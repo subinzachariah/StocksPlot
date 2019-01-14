@@ -10,6 +10,7 @@ On applying the different filters in the  drop down down(duration/indices), data
 DB contains the below columns
 
 mysql> describe data;
+
 +-----------------+-------+------+-----+---------+-------+
 | Field           | Type  | Null | Key | Default | Extra |
 +-----------------+-------+------+-----+---------+-------+
