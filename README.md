@@ -9,12 +9,6 @@ On applying the different filters in the  drop down down(duration/indices), data
 
 DB contains the below columns
 
-mysql> describe data;
-
-+-----------------+-------+------+-----+---------+-------+
-| Field           | Type  | Null | Key | Default | Extra |
-+-----------------+-------+------+-----+---------+-------+
-| date            | date  | NO   | PRI | NULL    |       |
-| dji_close_value | float | YES  |     | NULL    |       |
-| bse_close_value | float | YES  |     | NULL    |       |
-+-----------------+-------+------+-----+---------+-------+
+date                date
+dji_close_value     float
+bse_close_value     float
