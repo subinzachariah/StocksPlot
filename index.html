@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stock Data</title>
+<script src="../JS/lib/react.js"></script>
+	<script src="../JS/lib/react-dom.js"></script>
+	<script src="../JS/lib/babel.min.js"></script>
+	<script src="../JS/lib/canvasjs-2.2/canvasjs.min.js"></script>
+	<script src="action.js"></script>
+<script type="text/babel">
+var clicked = function () {
+var datapoints = getData();
+var bseDataPoints = datapoints['bseDataPoints'];
+var djDataPoints = datapoints['djDataPoints'];
+
+var chart = new CanvasJS.Chart("id01", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Stock Index Historical Graph"
+	},
+	axisX:{
+		valueFormatString: "DDMMMYY",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
+	},
+	axisY: {
+		title: "Stock Index",
+		crosshair: {
+			enabled: true
+		}
+	},
+	toolTip:{
+		shared:true
+	},  
+	legend:{
+		cursor:"pointer",
+		verticalAlign: "bottom",
+		horizontalAlign: "left",
+		dockInsidePlotArea: true,
+		itemclick: toogleDataSeries
+	},
+	data: [{
+		type: "line",
+		showInLegend: true,
+		name: "BSE",
+		markerType: "square",
+		xValueFormatString: "DD MMM, YYYY",
+		color: "#F08080",
+		dataPoints: bseDataPoints
+	},
+	{
+		type: "line",
+		showInLegend: true,
+		name: "DowJones",
+		lineDashType: "dash",
+		dataPoints: djDataPoints
+	}]
+});
+
+chart.render();
+
+function toogleDataSeries(e){
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else{
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+}
+
+</script>
+<script type="text/javascript">
+window.onload=loadDataFromDb();
+</script>
+</head>
+<body>
+<div>
+<div>
+<div id="title"><h1>Plot Stock Index</h1></div>
+<select id="duration">
+  <option value="5Years">5 Years</option>
+  <option value=1Year>1 Year</option>
+  <option value="6Months">6 Months</option>
+  <option value="3Months">3 Months</option>
+  <option value="1Month">1 Month</option>
+</select>
+<select id="index">
+  <option value="BothIndex">Both Index</option>
+  <option value="BSEonly">BSE only</option>
+  <option value="DowJonesonly">Dow Jones only</option>
+</select>
+<button type="button"onClick=clicked()>Display</button>
+</div>
+<div id="id01"></div>
+</div>
+</body>
+</html>
