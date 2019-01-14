@@ -17,7 +17,7 @@ try{
      Driver driver = (Driver) driver_class.newInstance();
      DriverManager.registerDriver(driver);
 Connection con=DriverManager.getConnection(  
-"jdbc:mysql://localhost:3306/stocks","root","User1234");  
+"jdbc:mysql://localhost:3306/stocks","root","password");  
 LinkedHashMap<Date,ArrayList<Float>> map = new LinkedHashMap<>();
 Statement stmt=con.createStatement();  
 ResultSet rs=stmt.executeQuery("select * from data");  
